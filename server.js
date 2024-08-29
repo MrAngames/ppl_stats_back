@@ -26,11 +26,6 @@ async function fetchData() {
         onlineData.push(playerCount);
         timeData.push(now.toLocaleTimeString());
 
-        if (onlineData.length > 60) {
-            onlineData.shift();
-            timeData.shift();
-        }
-
         console.log(`Player count: ${playerCount}`);
     } catch (error) {
         console.error('Ошибка при получении данных:', error);
@@ -45,8 +40,7 @@ app.get('/data', (req, res) => {
     });
 });
 
-// Запрос к API каждые 15 минут
-setInterval(fetchData, 1 * 60 * 1000);
+setInterval(fetchData, 5 * 60 * 1000);
 
 // Первый вызов, чтобы сразу получить данные
 fetchData();
